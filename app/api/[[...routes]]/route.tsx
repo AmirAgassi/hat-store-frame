@@ -1,7 +1,10 @@
 import { Button, Frog, TextInput } from "frog";
 import { handle } from "frog/next";
 import { ethers } from "ethers";
+import { JsonRpcProvider } from "@ethersproject/providers";
+import { parseEther } from "@ethersproject/units";
 import abi from "./abi.json";
+
 
 const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6";
 
