@@ -166,6 +166,14 @@ app.transaction("/buy/:price", async (c) => {
     to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
     value: parseEther("0.05"),
   });
+
+    return c.contract({ 
+    abi,
+    chainId: "eip155:11155111",
+    functionName: 'depositETH', 
+    to: '0xd2135CfB216b74109775236E36d4b433F1DF507B', 
+    value: parseEther('0.1'),
+  }) 
 });
 
 export const GET = handle(app);
