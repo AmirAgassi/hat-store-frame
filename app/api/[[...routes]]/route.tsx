@@ -11,4 +11,4 @@ export async function generateMetadata() {
 
 export default function Home(props) {
   return <div>My Page</div>;
-}
+} 
