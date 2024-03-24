@@ -160,11 +160,12 @@ app.frame("/coupon", async (c) => {
 app.transaction("/buy/:price", async (c) => {
   
   const price = c.req.param('price')
-
-  return c.send({
-    chainId: "eip155:8453",
-    to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
-    value: parseEther("0.05"),
+  const { request: mint } = await publicClient.simulateContract({
+    account,
+    address: CONTRACT,
+    abi: abi.abi,
+    functionName: "depositETH",
+    value: parseEther("0.1"),
   });
 });
 
