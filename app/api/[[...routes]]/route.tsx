@@ -18,27 +18,26 @@ const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6"
 const account = privateKeyToAccount((`0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d94957073d07f15fdb03792dd0`) || "");
 
 const publicClient = createPublicClient({
-    chain: {
+  chain: {
     id: 11155111, // Correct chain ID for Sepolia
     rpcUrls: {
-    default: {
-      http: ['"https://eth-sepolia.public.blastapi.io" '],
+      default: ['https://sepolia.base.org'],
     },
   },
   transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
 });
+
 const walletClient = createWalletClient({
   account,
-    chain: {
+  chain: {
     id: 11155111, // Correct chain ID for Sepolia
-        rpcUrls: {
-    default: {
-      http: ['"https://eth-sepolia.public.blastapi.io" '],
+    rpcUrls: {
+      default: ['https://sepolia.base.org'],
     },
-  },
   },
   transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
 });
+
 
 async function checkBalance(address: any) {
   try {
