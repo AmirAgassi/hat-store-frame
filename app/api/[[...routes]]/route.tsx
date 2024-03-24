@@ -46,11 +46,7 @@ async function checkBalance(address: any) {
 
 async function remainingSupply() {
   try {
-    const balance = await publicClient.readContract({
-      address: CONTRACT,
-      abi: abi.abi,
-      functionName: "totalSupply",
-    });
+    const balance = 100000;
     const readableBalance = Number(balance);
     return readableBalance;
   } catch (error) {
