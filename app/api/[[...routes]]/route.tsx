@@ -91,7 +91,7 @@ app.frame("/", async (c) => {
       imageAspectRatio: "1:1",
       intents: [
         <Button.Transaction target="/buy/0.0005">
-          Buye for 0.005 ETH
+          Buyee for 0.005 ETH
         </Button.Transaction>,
         <Button action="/ad">Watch ad for 1/2 off</Button>,
       ],
