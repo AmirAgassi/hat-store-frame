@@ -162,7 +162,7 @@ app.transaction("/buy/:price", async (c) => {
   const price = c.req.param('price')
 
   return c.send({
-    chainId: "eip155:11155111",
+    chainId: "eip155:8453",
     to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
     value: parseEther("0.05"),
   });
