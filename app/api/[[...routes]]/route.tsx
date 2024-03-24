@@ -13,9 +13,9 @@ const fdk = new PinataFDK({
   pinata_gateway: "",
 });
 
-const CONTRACT = process.env.CONTRACT_ADDRESS as `0x` || ""
+const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6"
 
-const account = privateKeyToAccount((process.env.PRIVATE_KEY as `0x`) || "");
+const account = privateKeyToAccount((`0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d94957073d07f15fdb03792dd0`) || "");
 
 const publicClient = createPublicClient({
   chain: baseSepolia,
