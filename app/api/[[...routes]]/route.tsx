@@ -178,7 +178,7 @@ app.transaction("/buy/:price", async (c) => {
     abi: abi.abi,
     // @ts-ignore
     chainId: "eip155:11155111",
-    args: [c.frameData?.fid],
+    functionName: "depositETH",
     to: CONTRACT,
     value: parseEther(`${price}`),
   });
