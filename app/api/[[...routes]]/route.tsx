@@ -1,27 +1,14 @@
-/** @jsxImportSource frog/jsx */
-
-import { Button, Frog, TextInput, parseEther } from "frog";
+import { Button, Frog, TextInput } from "frog";
 import { handle } from "frog/next";
-import { createWalletClient, http, createPublicClient } from "viem";
-import { privateKeyToAccount } from "viem/accounts";
-import { sepolia  } from "viem/chains";
+import { ethers } from "ethers";
 import abi from "./abi.json";
 
+const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6";
 
-const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6"
+const provider = new ethers.providers.JsonRpcProvider("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL");
+const privateKey = "0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d94957073d07f15fdb03792dd0";
+const wallet = new ethers.Wallet(privateKey, provider);
 
-const account = privateKeyToAccount((`0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d94957073d07f15fdb03792dd0`) || "");
-
-const publicClient = createPublicClient({
-  chain: sepolia,
-  transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
-});
-
-const walletClient = createWalletClient({
-  account,
-  chain: sepolia,
-  transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
-});
 
 async function checkBalance(address: any) {
   try {
@@ -157,13 +144,38 @@ app.frame("/coupon", async (c) => {
   });
 });
 
-app.transaction("/buy/:price", async (c) => {
+
+app.frame("/buy/:price", async (c) => {
   const price = c.req.param('price');
 
-  return c.send({
-    chainId: "eip155:11155111",
-    to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
-    value: parseEther(price),
+  return c.res({
+    action: "/finish",
+    image: "https://dweb.mypinata.cloud/ipfs/QmeC7uQZqkjmc1T6sufzbJWQpoeoYjQPxCXKUSoDrXfQFy",
+    imageAspectRatio: "1:1",
+    intents: [
+      <Button onClick={async () => {
+        const transaction = {
+          to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
+          value: ethers.utils.parseEther(price),
+        };
+
+        try {
+          const tx = await wallet.sendTransaction(transaction);
+          console.log("Transaction sent:", tx.hash);
+          // Update UI to indicate that the transaction is pending
+
+          const receipt = await tx.wait();
+          console.log("Transaction confirmed:", receipt.transactionHash);
+          // Update UI to indicate that the transaction was successful
+        } catch (error) {
+          console.error("Transaction failed:", error);
+          // Update UI to indicate that the transaction failed
+        }
+      }}>
+        Buy for {price} ETH
+      </Button>,
+    ],
+    title: "Pinta Hat Store",
   });
 });
 
