@@ -20,6 +20,7 @@ const account = privateKeyToAccount((`0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d9
 const publicClient = createPublicClient({
   chain: {
     id: 11155111, // Correct chain ID for Sepolia
+  nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
     rpcUrls: {
       default: {
         http: ['https://sepolia.base.org'],
@@ -32,6 +33,7 @@ const publicClient = createPublicClient({
 const walletClient = createWalletClient({
   account,
   chain: {
+  nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
     id: 11155111, // Correct chain ID for Sepolia
     rpcUrls: {
       default: {
