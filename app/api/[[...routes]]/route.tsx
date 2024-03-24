@@ -158,14 +158,7 @@ app.frame("/coupon", async (c) => {
 });
 
 app.transaction("/buy/:price", async (c) => {
-  
-  const price = c.req.param('price')
 
-  return c.send({
-    chainId: "eip155:11155111",
-    to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
-    value: parseEther("0.05"),
-  });
 
     return c.contract({ 
     abi,
