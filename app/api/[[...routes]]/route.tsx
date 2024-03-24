@@ -160,10 +160,20 @@ app.frame("/coupon", async (c) => {
 app.transaction("/buy/:price", async (c) => {
   const price = c.req.param('price');
 
-  return c.send({
-    chainId: "eip155:11155111", 
+  const tx = await walletClient.sendTransaction({
     to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
     value: parseEther(price),
+  });
+
+  return c.res({
+    image: "https://dweb.mypinata.cloud/ipfs/QmZPysm8ZiR9PaNxNGQvqdT2gBjdYsjNskDkZ1vkVs3Tju",
+    imageAspectRatio: "1:1",
+    intents: [
+      <Button.Link href="https://warpcast.com/~/channel/pinata">
+        Join the Pinata Channel
+      </Button.Link>,
+    ],
+    title: "Pinta Hat Store",
   });
 });
 
