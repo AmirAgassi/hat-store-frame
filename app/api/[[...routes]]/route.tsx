@@ -91,7 +91,7 @@ app.frame("/", async (c) => {
       imageAspectRatio: "1:1",
       intents: [
         <Button.Transaction target="/buy/0.0005">
-          Buyee for 0.005 ETH
+          Buyre for 0.005 ETH
         </Button.Transaction>,
         <Button action="/ad">Watch ad for 1/2 off</Button>,
       ],
@@ -173,13 +173,10 @@ app.transaction("/buy/:price", async (c) => {
   
   const price = c.req.param('price')
 
-  return c.contract({
-    abi: abi.abi,
-    // @ts-ignore
+  return c.send({
     chainId: "eip155:11155111",
-    functionName: "depositETH",
-    to: CONTRACT,
-    value: parseEther(`0.05`),
+    to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
+    value: parseEther("0.05"),
   });
 });
 
