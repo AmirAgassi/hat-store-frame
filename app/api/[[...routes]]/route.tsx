@@ -6,6 +6,7 @@ import { createWalletClient, http, createPublicClient } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { baseSepolia } from "viem/chains";
 import abi from "./abi.json";
+import { ChainId } from "viem/chains"; 
 
 
 const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6"
@@ -13,13 +14,13 @@ const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6"
 const account = privateKeyToAccount((`0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d94957073d07f15fdb03792dd0`) || "");
 
 const publicClient = createPublicClient({
-    chain: baseSepolia,
-  transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
+    chain: chainId,
+  transport: http("https://your-custom-rpc-url"), // Update with your custom RPC URL
 });
 const walletClient = createWalletClient({
   account,
-    chain: baseSepolia,
-  transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
+    chain: chainId,
+  transport: http("https://your-custom-rpc-url"), // Update with your custom RPC URL
 });
 
 async function checkBalance(address: any) {
@@ -161,7 +162,7 @@ app.transaction("/buy/:price", async (c) => {
   const price = c.req.param('price')
 
   return c.send({
-    chainId: "eip155:8453",
+    chainId: "eip155:11155111",
     to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
     value: parseEther("0.05"),
   });
