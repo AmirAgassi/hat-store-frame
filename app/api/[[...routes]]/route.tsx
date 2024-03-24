@@ -79,7 +79,7 @@ app.frame("/", async (c) => {
       imageAspectRatio: "1:1",
       intents: [
         <Button.Transaction target="/buy/0.0005">
-          Buyre for 0.005 ETH
+          Buy for 0.005 ETH
         </Button.Transaction>,
         <Button action="/ad">Watch ad for 1/2 off</Button>,
       ],
@@ -112,7 +112,7 @@ app.frame("/ad", async (c) => {
       <TextInput placeholder="Wallet Address (not ens)" />,
       <Button>Receive Coupon</Button>,
     ],
-    title: "Pinta Hat Store",
+    title: "Pinta Hat Store", 
   });
 });
 
@@ -128,7 +128,7 @@ app.frame("/coupon", async (c) => {
     supply > 0
   ) {
     const { request: mint } = await publicClient.simulateContract({
-      account,
+      account,  
       address: CONTRACT,
       abi: abi.abi,
       functionName: "mint",
@@ -140,17 +140,17 @@ app.frame("/coupon", async (c) => {
     const mintReceipt = await publicClient.waitForTransactionReceipt({
       hash: mintTransaction,
     });
-    console.log("Mint Status:", mintReceipt.status);
+    console.log("Mint Status:", mintReceipt.status); 
   }
 
   return c.res({
     action: "/finish",
-    image:
+    image:  
       "https://dweb.mypinata.cloud/ipfs/QmeUmBtAMBfwcFRLdoaCVJUNSXeAPzEy3dDGomL32X8HuP",
     imageAspectRatio: "1:1",
     intents: [
       <Button.Transaction target="/buy/0.0025">
-        Buyere for 0.0025 ETH
+        Buy for 0.0025 ETH
       </Button.Transaction>,
     ],
     title: "Pinta Hat Store",
@@ -158,15 +158,13 @@ app.frame("/coupon", async (c) => {
 });
 
 app.transaction("/buy/:price", async (c) => {
+  const price = c.req.param('price');
 
-
-    return c.contract({ 
-    abi.abi,
-    chainId: "eip155:11155111",
-    functionName: 'depositETH', 
-    to: '0xd2135CfB216b74109775236E36d4b433F1DF507B', 
-    value: parseEther('0.1'),
-  }) 
+  return c.send({
+    chainId: "eip155:11155111", 
+    to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
+    value: parseEther(price),
+  });
 });
 
 export const GET = handle(app);
