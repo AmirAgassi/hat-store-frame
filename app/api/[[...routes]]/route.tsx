@@ -18,12 +18,18 @@ const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6"
 const account = privateKeyToAccount((`0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d94957073d07f15fdb03792dd0`) || "");
 
 const publicClient = createPublicClient({
-  chain: baseSepolia,
+    chain: {
+    id: 11155111, // Correct chain ID for Sepolia
+    rpcUrl: "https://rpc.sepolia.dev" // An example of a valid Sepolia RPC endpoint
+  },
   transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
 });
 const walletClient = createWalletClient({
   account,
-  chain: baseSepolia,
+    chain: {
+    id: 11155111, // Correct chain ID for Sepolia
+    rpcUrl: "https://rpc.sepolia.dev" // An example of a valid Sepolia RPC endpoint
+  },
   transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
 });
 
@@ -162,7 +168,7 @@ app.frame("/coupon", async (c) => {
     imageAspectRatio: "1:1",
     intents: [
       <Button.Transaction target="/buy/0.0025">
-        Buyee for 0.0025 ETH
+        Buyere for 0.0025 ETH
       </Button.Transaction>,
     ],
     title: "Pinta Hat Store",
