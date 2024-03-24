@@ -6,7 +6,6 @@ import { createWalletClient, http, createPublicClient } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia  } from "viem/chains";
 import abi from "./abi.json";
-import { ChainId } from "viem/chains"; 
 
 
 const CONTRACT = "0x47b585983acd9a26aa44736ccf20bd4f2203fdb6"
