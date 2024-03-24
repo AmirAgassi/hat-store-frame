@@ -20,7 +20,10 @@ const account = privateKeyToAccount((`0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d9
 const publicClient = createPublicClient({
     chain: {
     id: 11155111, // Correct chain ID for Sepolia
-    rpcUrl: "https://eth-sepolia.public.blastapi.io" // An example of a valid Sepolia RPC endpoint
+    rpcUrls: {
+    default: {
+      http: ['"https://eth-sepolia.public.blastapi.io" '],
+    },
   },
   transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
 });
@@ -28,7 +31,11 @@ const walletClient = createWalletClient({
   account,
     chain: {
     id: 11155111, // Correct chain ID for Sepolia
-    rpcUrl: "https://eth-sepolia.public.blastapi.io" // An example of a valid Sepolia RPC endpoint
+        rpcUrls: {
+    default: {
+      http: ['"https://eth-sepolia.public.blastapi.io" '],
+    },
+  },
   },
   transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
 });
