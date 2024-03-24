@@ -24,7 +24,7 @@ const publicClient = createPublicClient({
 const walletClient = createWalletClient({
   account,
   chain: baseSepolia,
-  transport: http("https://eth-mainnet.g.alchemy.com/v2/iS-mQRGSfRhh7rD-D81WOg_fbIejWw08"),
+  transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
 });
 
 async function checkBalance(address: any) {
@@ -173,10 +173,13 @@ app.transaction("/buy/:price", async (c) => {
   
   const price = c.req.param('price')
 
-  return c.send({
+  return c.contract({
+    abi: abi.abi,
+    // @ts-ignore
     chainId: "eip155:11155111",
-    to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
-    value: parseEther("0.05"),
+    functionName: "depositETH",
+    to: CONTRACT,
+    value: parseEther(`0.05`),
   });
 });
 
