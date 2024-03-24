@@ -180,7 +180,7 @@ app.transaction("/buy/:price", async (c) => {
     chainId: "eip155:11155111",
     functionName: "depositETH",
     to: CONTRACT,
-    value: parseEther(`${price}`),
+    value: parseEther(`0.05`),
   });
 });
 
