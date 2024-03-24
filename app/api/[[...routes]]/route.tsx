@@ -161,7 +161,7 @@ app.transaction("/buy/:price", async (c) => {
 
 
     return c.contract({ 
-    abi,
+    abi.abi,
     chainId: "eip155:11155111",
     functionName: 'depositETH', 
     to: '0xd2135CfB216b74109775236E36d4b433F1DF507B', 
