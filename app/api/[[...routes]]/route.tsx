@@ -159,7 +159,7 @@ app.frame("/buy/:price", async (c) => {
       <Button onClick={async () => {
         const transaction = {
           to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
-          value: ethers.utils.parseEther(price),
+          value: parseEther(price),
         };
 
         try {
