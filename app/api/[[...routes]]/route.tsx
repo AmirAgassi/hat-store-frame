@@ -21,7 +21,9 @@ const publicClient = createPublicClient({
   chain: {
     id: 11155111, // Correct chain ID for Sepolia
     rpcUrls: {
-      default: ['https://sepolia.base.org'],
+      default: {
+        http: ['https://sepolia.base.org'],
+      }
     },
   },
   transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
@@ -32,7 +34,9 @@ const walletClient = createWalletClient({
   chain: {
     id: 11155111, // Correct chain ID for Sepolia
     rpcUrls: {
-      default: ['https://sepolia.base.org'],
+      default: {
+        http: ['https://sepolia.base.org'],
+      }
     },
   },
   transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
