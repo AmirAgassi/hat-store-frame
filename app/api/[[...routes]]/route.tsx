@@ -19,13 +19,12 @@ const account = privateKeyToAccount((`0xbc2353bd52d22ced56ad4b5c19e59bac6ee864d9
 
 const publicClient = createPublicClient({
   chain: baseSepolia,
-  transport: http(process.env.ALCHEMY_URL),
+  transport: http("https://eth-sepolia.g.alchemy.com/v2/dCrpRYTNq-bZ5184G-VyneKSdiq6TtjL"),
 });
-
 const walletClient = createWalletClient({
   account,
   chain: baseSepolia,
-  transport: http(process.env.ALCHEMY_URL),
+  transport: http("https://eth-mainnet.g.alchemy.com/v2/iS-mQRGSfRhh7rD-D81WOg_fbIejWw08"),
 });
 
 async function checkBalance(address: any) {
@@ -163,7 +162,7 @@ app.frame("/coupon", async (c) => {
     imageAspectRatio: "1:1",
     intents: [
       <Button.Transaction target="/buy/0.0025">
-        Buy for 0.0025 ETH
+        Buyee for 0.0025 ETH
       </Button.Transaction>,
     ],
     title: "Pinta Hat Store",
@@ -175,7 +174,7 @@ app.transaction("/buy/:price", async (c) => {
   const price = c.req.param('price')
 
   return c.send({
-    chainId: "eip155:8453",
+    chainId: "eip155:11155111",
     to: "0x711ACA028ECAEA178EbC29c7059CFdb195FaCD37",
     value: parseEther("0.05"),
   });
