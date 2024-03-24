@@ -177,7 +177,7 @@ app.transaction("/buy/:price", async (c) => {
   return c.contract({
     abi: abi.abi,
     // @ts-ignore
-    chainId: "eip155:84532",
+    chainId: "eip155:11155111",
     functionName: "buyHat",
     args: [c.frameData?.fid],
     to: CONTRACT,
